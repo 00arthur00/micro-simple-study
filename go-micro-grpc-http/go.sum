@@ -493,6 +493,8 @@ github.com/micro/go-plugins/client/http/v2 v2.3.0 h1:3puJbS6dLLva22wKfhp+WSfCWpG
 github.com/micro/go-plugins/client/http/v2 v2.3.0/go.mod h1:oqZO0TT7/4rj6sMSAMNP3MpUQNQomp1aoJurgLNNWNw=
 github.com/micro/go-plugins/registry/consul/v2 v2.3.0 h1:leX7yPBYvvs+poGyw/UWdGzcYmngoeIjr+fPdsqHx48=
 github.com/micro/go-plugins/registry/consul/v2 v2.3.0/go.mod h1:BftHiALzT0vPQkmtH9y+zbJ2MTNVZ16rRsSsxOfzf8M=
+github.com/micro/go-plugins/registry/etcd/v2 v2.3.0 h1:SMwt6KwoBop5t+1FPMQaXY/Xo1VZBkfihgzPe9lNL/M=
+github.com/micro/go-plugins/registry/etcd/v2 v2.3.0/go.mod h1:ngTHrsHMgpuTmt10Or8PEdjWS50sbauTqsL525gNGdo=
 github.com/micro/go-plugins/v2 v2.0.0 h1:QbzQBaOVNtAIhjTgtLoOHtlhcwNFbcJenEsT66IwpkQ=
 github.com/micro/mdns v0.3.0 h1:bYycYe+98AXR3s8Nq5qvt6C573uFTDPIYzJemWON0QE=
 github.com/micro/mdns v0.3.0/go.mod h1:KJ0dW7KmicXU2BV++qkLlmHYcVv7/hHnbtguSWt9Aoc=

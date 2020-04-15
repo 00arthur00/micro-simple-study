@@ -9,12 +9,12 @@ import (
 	"github.com/micro/go-micro/v2/client/selector"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-plugins/client/http/v2"
-	"github.com/micro/go-plugins/registry/consul/v2"
+	"github.com/micro/go-plugins/registry/etcd/v2"
 )
 
 func main() {
-	reg := consul.NewRegistry(
-		registry.Addrs("127.0.0.1:8500"),
+	reg := etcd.NewRegistry(
+		registry.Addrs("127.0.0.1:2379"),
 	)
 	sel := selector.NewSelector(
 		selector.SetStrategy(selector.Random),

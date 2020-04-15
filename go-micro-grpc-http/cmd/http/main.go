@@ -10,7 +10,7 @@ import (
 	"github.com/micro/go-micro/v2/client/selector"
 	"github.com/micro/go-micro/v2/registry"
 	"github.com/micro/go-micro/v2/web"
-	"github.com/micro/go-plugins/registry/consul/v2"
+	"github.com/micro/go-plugins/registry/etcd/v2"
 	"services.yapo.fun/service"
 	"services.yapo.fun/wrappers"
 )
@@ -26,16 +26,16 @@ func defaultList() *service.ProdListResponse {
 	return &service.ProdListResponse{Data: list}
 }
 func main() {
-	consulReg := consul.NewRegistry(
-		registry.Addrs("127.0.0.1:8500"),
+	etcdReg := etcd.NewRegistry(
+		registry.Addrs("127.0.0.1:2379"),
 	)
 	sel := selector.NewSelector(
 		selector.SetStrategy(selector.RoundRobin),
-		selector.Registry(consulReg),
+		selector.Registry(etcdReg),
 	)
 	myservice := micro.NewService(
 		micro.Name("prodservice.client"),
-		// micro.Registry(consulReg),
+		// micro.Registry(etcdReg),
 		micro.WrapClient(NewLogWrapper, wrappers.NewProdWrapper),
 		micro.Selector(sel),
 	)
@@ -87,7 +87,7 @@ func main() {
 		web.Name("httpprodservice"),
 		web.Address(":8081"),
 		web.Handler(router),
-		web.Registry(consulReg),
+		web.Registry(etcdReg),
 		//需要设置，否则，micro http client无法连接
 		web.Metadata(map[string]string{
 			"protocol": "http",

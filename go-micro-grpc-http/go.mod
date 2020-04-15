@@ -12,5 +12,6 @@ require (
 	github.com/micro/go-plugins v1.5.1
 	github.com/micro/go-plugins/client/http/v2 v2.3.0
 	github.com/micro/go-plugins/registry/consul/v2 v2.3.0
+	github.com/micro/go-plugins/registry/etcd/v2 v2.3.0 // indirect
 	github.com/micro/micro v1.18.0 // indirect
 )

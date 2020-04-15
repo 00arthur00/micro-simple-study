@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/web"
-	"github.com/micro/go-plugins/registry/consul"
+	"github.com/micro/go-micro/registry/v2"
+	"github.com/micro/go-micro/v2/web"
+	"github.com/micro/go-plugins/registry/etcd/v2"
 )
 
 func makeIntArray(n int) []int {
@@ -14,17 +14,16 @@ func makeIntArray(n int) []int {
 	for i := 0; i < n; i++ {
 		array[i] = i
 	}
-	return
+	return array
 }
 func main() {
-	consulReg := consul.NewRegistry(
-		registry.Addrs("127.0.0.1:8500"),
+	consulReg := etcd.NewRegistry(
+		registry.Addrs("127.0.0.1:2379"),
 	)
 	router := gin.Default()
 	v1 := router.Group("/v1")
 	{
 		v1.Handle(http.MethodPost, "/prod", func(ctx *gin.Context) {
-			ctx.Bind()
 			ctx.JSON(http.StatusOK, gin.H{
 				"data": makeIntArray(10),
 			})
@@ -35,6 +34,9 @@ func main() {
 		// web.Address(":8001"),
 		web.Handler(router),
 		web.Registry(consulReg),
+		web.Metadata(map[string]string{
+			"protocol": "http",
+		}),
 	)
 	server.Init()
 	server.Run()
